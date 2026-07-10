@@ -1,0 +1,13 @@
+# Ignore Visual Studio local artifacts
+.vs/
+*.sln
+*.vcxproj
+*.user
+
+# Ignore build directory
+build/
+bin/
+obj/
+
+# Ignore local external library artifacts if needed (or keep headers if intended)
+# Project/extern/vulkan/ (uncomment if you don't want to track the source files of external dependencies)
