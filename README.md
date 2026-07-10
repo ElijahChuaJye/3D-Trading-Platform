@@ -1,6 +1,27 @@
 # 3D-Trading-Platform
 A modular, native 3D financial trading platform engine written in C++20 and Vulkan 1.3
 
+# Project Title 🚧 (Work in Progress)
+
+A concise description of what this project will eventually be once completed. 
+
+> **Current Status:** This project is under active development. The core systems are being built, and it is not yet ready for production or general use.
+
+## 🗺️ Development Roadmap
+
+### Phase 1: Core Foundation
+- [x] Set up project architecture and folder structures
+- [x] Configure build system (CMake/Scripts)
+- [x] Implement memory logging/tracking system
+
+### Phase 2: Core Features (Current Focus)
+- [x] Implement the data processing engine
+- [ ] Integrate the UI layer / Front-end interface
+- [ ] Connect the local database backup module
+
+### Phase 3: Polish & Deployment
+- [ ] Write unit tests and optimize performance
+- [ ] Create detailed build documentation
 
 # Blitz 3D Trading Platform Engine
 
