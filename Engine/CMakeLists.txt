@@ -24,6 +24,7 @@ target_include_directories(Engine PUBLIC
     extern
     extern/vulkan
     ${Vulkan_INCLUDE_DIRS}
+    ${vma_SOURCE_DIR}/include
 )
 
 # Connect low-level API dependencies directly to the Engine framework binary
@@ -34,8 +35,14 @@ target_link_libraries(Engine PUBLIC
     ${WINSOCK_LIB}
 )
 
+
 if(MSVC)
-    target_compile_options(Engine PRIVATE /W4 /WX)
+   # WHY: We add /wd4100 (Disable unused parameter warnings) and 
+    # /wd4324 (Disable structure padding warnings) to prevent third-party 
+    # headers like VMA from triggering compilation failures under our strict /WX flag.
+    target_compile_options(Engine PRIVATE /W4 /WX /wd4100 /wd4324)
 else()
-    target_compile_options(Engine PRIVATE -Wall -Wextra -Werror)
+    # WHY: On GCC/Clang, we similarly tell the compiler to ignore unused parameter 
+    # warnings inside the Engine so that VMA doesn't halt the build.
+    target_compile_options(Engine PRIVATE -Wall -Wextra -Werror -Wno-unused-parameter)
 endif()

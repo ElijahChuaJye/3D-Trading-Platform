@@ -15,6 +15,7 @@
 
 #include <vulkan/volk.h>
 #include <GLFW/glfw3.h>
+#include <vk_mem_alloc.h>
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -136,6 +137,10 @@ private:
 	VkDevice m_logicalDevice{ VK_NULL_HANDLE };   // The logical interface/connection to the GPU
 	VkQueue m_graphicsQueue{ VK_NULL_HANDLE };    // Command queue for graphics-specific operations (rendering)
 	VkQueue m_presentQueue{ VK_NULL_HANDLE };     // Command queue for display presentation (swapchain)
+
+	//Main allocator handle. Use this object to create and destroy
+	//our GPU buffers (vertex buffers, Index Buffers, Uniform buffers)
+	VmaAllocator m_allocator;
 
 	//VkInstance is the connection between my engine and Vulkan Library.
 	//It is a  member variable because it will be used to create all the things we need.

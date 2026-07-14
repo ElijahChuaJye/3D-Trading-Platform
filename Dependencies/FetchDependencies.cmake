@@ -37,3 +37,11 @@ endif()
 if(TARGET glm_dummy)
     set_target_properties(glm_dummy PROPERTIES FOLDER "FetchContent")
 endif()
+
+# Fetch Vulkan Memory Allocator (VMA)
+FetchContent_Declare(
+    vma
+    GIT_REPOSITORY https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
+    GIT_TAG        v3.1.0 # Or the latest stable release tag
+)
+FetchContent_MakeAvailable(vma)

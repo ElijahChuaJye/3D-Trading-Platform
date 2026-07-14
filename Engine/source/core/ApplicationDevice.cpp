@@ -10,7 +10,32 @@
 * logical device initialization, and the setup of the rendering pipeline.
 * */
 
+// 1. FIRST: Include your application header. 
+// WHY: This pulls in 'volk.h' first, ensuring all Vulkan structures and 
+// functions are fully loaded in memory before VMA tries to use them.
 #include "core/Application.h"
+
+// 2. SECOND: Set up the VMA implementation macro.
+#define VMA_IMPLEMENTATION
+
+// 3. THIRD: Tell MSVC to temporarily turn off all warnings.
+// WHY: VMA is a highly generic, cross-platform library. Wrapping the include 
+// in a warning push/pop block tells the Microsoft compiler to drop its warning 
+// level to '0' (complete silence) ONLY for this header, preventing our strict 
+// '/WX' (warnings-as-errors) flag from triggering on AMD's code.
+#if defined(_MSC_VER)
+#pragma warning(push, 0) 
+#endif
+
+// 4. FOURTH: Include the allocator code now that warnings are muted.
+#include <vk_mem_alloc.h>
+
+// 5. FIFTH: Instantly restore our strict '/W4 /WX' warning levels.
+// WHY: This ensures that any code we write below this line is still strictly 
+// scrutinized by the compiler, maintaining our high code-quality standards.
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 /**
 * @brief Picking the physical GPU that will be used for Vulkan
